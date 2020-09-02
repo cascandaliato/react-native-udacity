@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import AddEntry from './components/AddEntry';
-import { createStore } from 'redux';
+import { StyleSheet, View, Platform } from 'react-native';
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import AddEntry from './components/AddEntry';
 import reducer from './reducers';
 
 export default function App() {
