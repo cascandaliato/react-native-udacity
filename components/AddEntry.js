@@ -9,6 +9,7 @@ import { getDailyReminderValue, getMetricMetaInfo, timeToString } from '../utils
 import TextButton from './TextButton';
 import UdaciSlider from './UdaciSlider';
 import UdaciStepper from './UdaciStepper';
+import DateHeader from './DateHeader';
 
 function SubmitBtn({ onPress }) {
   return (
@@ -94,6 +95,7 @@ class AddEntry extends Component {
 
     return (
       <View style={styles.container}>
+        <DateHeader date={timeToString()} />
         {Object.keys(metaInfo).map((key) => {
           const { getIcon, type, ...rest } = metaInfo[key];
           const value = this.state[key];
