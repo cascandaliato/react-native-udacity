@@ -5,7 +5,8 @@ import { createStore } from 'redux';
 import AddEntry from './components/AddEntry';
 import reducer from './reducers';
 import History from './components/History';
-import { TabNavigator } from 'react-navigator';
+import EntryDetail from './components/EntryDetail';
+import { TabNavigator, StackNavigator } from 'react-navigator';
 import { purple, white } from './utils/colors';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
@@ -60,12 +61,27 @@ const Tabs = TabNavigator(
   },
 );
 
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+  EntryDetail: {
+    screen: EntryDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    },
+  },
+});
+
 export default function App() {
   return (
     <Provider store={createStore(reducer)}>
       <View style={{ flex: 1 }}>
         <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
-        <Tabs />
+        <MainNavigator />
       </View>
     </Provider>
   );

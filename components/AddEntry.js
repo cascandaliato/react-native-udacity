@@ -10,6 +10,7 @@ import TextButton from './TextButton';
 import UdaciSlider from './UdaciSlider';
 import UdaciStepper from './UdaciStepper';
 import DateHeader from './DateHeader';
+import { NavigationActions } from 'react-navigation';
 
 function SubmitBtn({ onPress }) {
   return (
@@ -68,14 +69,17 @@ class AddEntry extends Component {
       sleep: 0,
       eat: 0,
     }));
-
+    this.toHome();
     submitEntry({ key, entry });
   };
   reset = () => {
     const key = timeToString();
-
     this.props.dispatch(addEntry({ [key]: getDailyReminderValue() }));
+    this.toHome();
     removeEntry(key);
+  };
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back({ key: 'AddEntry' }));
   };
   render() {
     const metaInfo = getMetricMetaInfo();
